@@ -1,37 +1,18 @@
 <?php
 
-class GroupeBoutonsRadio {
-    private $nom;
-    private $libelle;
-    private $estObligatoire;
+require_once('Champ.php');
+
+class GroupeBoutonsRadio extends Champ {
     private $options;
-    private $erreur;
 
     public function __construct($nom, $libelle, $estObligatoire) {
-        $this->nom = $nom;
-        $this->libelle = $libelle;
-        $this->estObligatoire = $estObligatoire;
-        $this->options = [];
-        $this->erreur = null;
-    }
+        parent::__construct($nom, $libelle, $estObligatoire);
 
-    public function getLibelle() {
-        return $this->libelle;
+        $this->options = [];
     }
 
     public function ajouterOption($option) {
         $this->options[] = $option;
-    }
-
-    public function estRecu() {
-        return isset($_POST[$this->nom]);
-    }
-
-    public function getValeur() {
-        if ($this->estRecu()) {
-            return htmlspecialchars(trim($_POST[$this->nom]));
-        }
-        return null;
     }
 
     public function valider() {
@@ -46,10 +27,6 @@ class GroupeBoutonsRadio {
         } else if ($this->estObligatoire) {
             $this->erreur = "Le champ {$this->libelle} est obligatoire.";
         }
-    }
-
-    public function getErreur() {
-        return $this->erreur;
     }
 
     public function html() {

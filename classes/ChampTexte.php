@@ -1,31 +1,10 @@
 <?php
 
-class ChampTexte {
-    private $nom;
-    private $libelle;
-    private $estObligatoire;
-    private $erreur;
+require_once('Champ.php');
 
+class ChampTexte extends Champ {
     public function __construct($nom, $libelle, $estObligatoire) {
-        $this->nom = $nom;
-        $this->libelle = $libelle;
-        $this->estObligatoire = $estObligatoire;
-        $this->erreur = null;
-    }
-
-    public function getLibelle() {
-        return $this->libelle;
-    }
-
-    public function estRecu() {
-        return isset($_POST[$this->nom]);
-    }
-
-    public function getValeur() {
-        if ($this->estRecu()) {
-            return htmlspecialchars(trim($_POST[$this->nom]));
-        }
-        return null;
+        parent::__construct($nom, $libelle, $estObligatoire);
     }
 
     public function valider() {
@@ -37,10 +16,6 @@ class ChampTexte {
         } else if ($this->estObligatoire) {
             $this->erreur = "Le champ {$this->libelle} est obligatoire.";
         }
-    }
-
-    public function getErreur() {
-        return $this->erreur;
     }
 
     public function html() {

@@ -1,37 +1,17 @@
 <?php
 
-class ListeDeroulante {
-    private $nom;
-    private $libelle;
-    private $estObligatoire;
+require_once('Champ.php');
+
+class ListeDeroulante extends Champ {
     private $options;
-    private $erreur;
 
     public function __construct($nom, $libelle, $estObligatoire) {
-        $this->nom = $nom;
-        $this->libelle = $libelle;
-        $this->estObligatoire = $estObligatoire;
+        parent::__construct($nom, $libelle, $estObligatoire);
         $this->options = [];
-        $this->erreur = null;
-    }
-
-    public function getLibelle() {
-        return $this->libelle;
     }
 
     public function ajouterOption($texte) {
         $this->options[] = $texte;
-    }
-
-    public function estRecu() {
-        return isset($_POST[$this->nom]);
-    }
-
-    public function getValeur() {
-        if ($this->estRecu()) {
-            return htmlspecialchars(trim($_POST[$this->nom]));
-        }
-        return null;
     }
 
     public function valider() {
@@ -46,10 +26,6 @@ class ListeDeroulante {
         } else if ($this->estObligatoire) {
             $this->erreur = "Le champ {$this->libelle} est obligatoire.";
         }
-    }
-
-    public function getErreur() {
-        return $this->erreur;
     }
 
     public function html() {
