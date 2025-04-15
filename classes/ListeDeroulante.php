@@ -1,31 +1,10 @@
 <?php
 
-require_once('Champ.php');
+require_once('ChampOptions.php');
 
-class ListeDeroulante extends Champ {
-    private $options;
-
+class ListeDeroulante extends ChampOptions {
     public function __construct($nom, $libelle, $estObligatoire) {
         parent::__construct($nom, $libelle, $estObligatoire);
-        $this->options = [];
-    }
-
-    public function ajouterOption($texte) {
-        $this->options[] = $texte;
-    }
-
-    public function valider() {
-        if ($this->estRecu()) {
-            $valeur = $this->getValeur();
-            if ($this->estObligatoire && empty($valeur)) {
-                $this->erreur = "Le champ {$this->libelle} est obligatoire.";
-            }
-            if (!in_array($valeur, $this->options)) {
-                $this->erreur = "Le champ {$this->libelle} doit être une option valide.";
-            }
-        } else if ($this->estObligatoire) {
-            $this->erreur = "Le champ {$this->libelle} est obligatoire.";
-        }
     }
 
     public function html() {
