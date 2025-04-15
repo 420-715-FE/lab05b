@@ -50,10 +50,14 @@ Si vous regardez le code dans `tests/etape1.php`, vous constaterez que celui-ci 
 
 ## Partie 1
 
-Modifiez le code des classes `ChampNombre`, `GroupeBoutonsRadio` et `ListeDeroulante` afin de les faire hériter de `Champ`. Les classes doivent hériter seulement de ce qui diffère par rapport à `Champ`. Inspirez-vous de ce qui a été fait dans `ChampTexte`, et testez vos nouvelles versions des classes au fur et à mesure en changeant `$etape` dans `index.php` (comme dans le Laboratoire 05-A).
+Modifiez le code des classes `ChampNombre`, `GroupeBoutonsRadio` et `ListeDeroulante` afin de les faire hériter de `Champ`. Les classes doivent implémenter seulement ce qui diffère par rapport à `Champ`. Inspirez-vous de ce qui a été fait dans `ChampTexte`, et testez vos nouvelles versions des classes au fur et à mesure en changeant `$etape` dans `index.php` (comme dans le Laboratoire 05-A).
+
+Voici un diagramme représentant chacune des classes après héritage:
 
 ![](images-readme/heritage2.png)
 
 ## Partie 2
 
-Avez-vous remarqué que même avec la classe mère `Champ` que nous avons ajoutée, il subsiste du code similaire entre deux de nos classes? Il s'agit des classes `GroupeBoutonsRadio` et `ListeDeroulante`. Ces deux classes ajoutent un attribut `$options` et une méthode `ajouterOption`, et la méthode `valider` est identique. Pourquoi ne pas ajouter une classe `ChampOptions`, qui hériterait elle-même de `Champ`, et qui implémenterait les éléments communs entre `GroupeBoutonsRadio` et `ListeDeroulante` (qui elles-mêmes hériteraient de `ChampOptions`) ? Faites les ajouts et modifications nécessaires.
+Avez-vous remarqué que même avec la classe mère `Champ` que nous avons ajoutée, il subsiste du code similaire entre deux de nos classes? Il s'agit des classes `GroupeBoutonsRadio` et `ListeDeroulante`. Ces deux classes ajoutent un attribut `$options` et une méthode `ajouterOption`, et la méthode `valider` est identique. Pourquoi ne pas ajouter une classe `ChampOptions`, qui hériterait elle-même de `Champ`, et qui implémenterait les éléments communs entre `GroupeBoutonsRadio` et `ListeDeroulante` (qui elles-mêmes hériteraient de `ChampOptions`) ? Faites les ajouts et modifications nécessaires en vous basant sur le diagramme suivant:
+
+![](images-readme/heirtage3.png)
