@@ -1,26 +1,45 @@
 <?php
 
-require_once('Champ.php');
-
-class ChampNombre extends Champ {
+class ChampNombre {
+    private $nom;
+    private $libelle;
+    private $estObligatoire;
     private $valeurMin;
     private $valeurMax;
     private $doitEtreEntier;
+    private $erreur;
 
     public function __construct($nom, $libelle, $estObligatoire, $doitEtreEntier) {
-        parent::__construct($nom, $libelle, $estObligatoire);
-        
+        $this->nom = $nom;
+        $this->libelle = $libelle;
+        $this->estObligatoire = $estObligatoire;
         $this->doitEtreEntier = $doitEtreEntier;
         $this->valeurMin = -INF;
         $this->valeurMax = INF;
+        $this->erreur = null;
     }
-  
+
+    public function getLibelle() {
+        return $this->libelle;
+    }
+
     public function setValeurMin($valeurMin) {
         $this->valeurMin = $valeurMin;
     }
     
     public function setValeurMax($valeurMax) {
         $this->valeurMax = $valeurMax;
+    }
+
+    public function estRecu() {
+        return isset($_POST[$this->nom]);
+    }
+
+    public function getValeur() {
+        if ($this->estRecu()) {
+            return htmlspecialchars(trim($_POST[$this->nom]));
+        }
+        return null;
     }
 
     public function valider() {
@@ -56,6 +75,10 @@ class ChampNombre extends Champ {
         $html .= " value=\"{$this->getValeur()}\"";
         $html .= ">";
         return $html;
+    }
+
+    public function getErreur() {
+        return $this->erreur;
     }
 }
 
