@@ -1,0 +1,55 @@
+@startuml
+
+abstract class Champ {
+    # nom
+    # libelle
+    # estObligatoire
+    # erreur
+    + __construct(nom, libelle, estObligatoire)
+    + getLibelle()
+    + estRecu()
+    + getValeur()
+    + getErreur()
+    + abstract valider()
+    + abstract html()
+}
+
+class ChampTexte {
+    + __construct(nom, libelle, estObligatoire)
+    + valider()
+    + html()
+}
+
+class ChampNombre {
+    - valeurMin
+    - valeurMax
+    - doitEtreEntier
+    + __construct(nom, libelle, estObligatoire, doitEtreEntier)
+    + setValeurMin(valeurMin)
+    + setValeurMax(valeurMax)
+    + valider()
+    + html()
+}
+
+class GroupeBoutonsRadio {
+    - options
+    + __construct(nom, libelle, estObligatoire)
+    + ajouterOption(option)
+    + valider()
+    + html()
+}
+
+class ListeDeroulante {
+    - options
+    + __construct(nom, libelle, estObligatoire)
+    + ajouterOption(option)
+    + valider()
+    + html()
+}
+
+Champ <|-- ChampTexte
+Champ <|-- ChampNombre
+Champ <|-- ListeDeroulante
+Champ <|-- GroupeBoutonsRadio
+
+@enduml

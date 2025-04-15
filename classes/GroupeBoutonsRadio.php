@@ -1,55 +1,10 @@
 <?php
 
-class GroupeBoutonsRadio {
-    private $nom;
-    private $libelle;
-    private $estObligatoire;
-    private $options;
-    private $erreur;
+require_once('ChampOptions.php');
 
+class GroupeBoutonsRadio extends ChampOptions {
     public function __construct($nom, $libelle, $estObligatoire) {
-        $this->nom = $nom;
-        $this->libelle = $libelle;
-        $this->estObligatoire = $estObligatoire;
-        $this->options = [];
-        $this->erreur = null;
-    }
-
-    public function getLibelle() {
-        return $this->libelle;
-    }
-
-    public function ajouterOption($option) {
-        $this->options[] = $option;
-    }
-
-    public function estRecu() {
-        return isset($_POST[$this->nom]);
-    }
-
-    public function getValeur() {
-        if ($this->estRecu()) {
-            return htmlspecialchars(trim($_POST[$this->nom]));
-        }
-        return null;
-    }
-
-    public function valider() {
-        if ($this->estRecu()) {
-            $valeur = $this->getValeur();
-            if ($this->estObligatoire && empty($valeur)) {
-                $this->erreur = "Le champ {$this->libelle} est obligatoire.";
-            }
-            if (!in_array($valeur, $this->options)) {
-                $this->erreur = "Le champ {$this->libelle} doit être une option valide.";
-            }
-        } else if ($this->estObligatoire) {
-            $this->erreur = "Le champ {$this->libelle} est obligatoire.";
-        }
-    }
-
-    public function getErreur() {
-        return $this->erreur;
+        parent::__construct($nom, $libelle, $estObligatoire);
     }
 
     public function html() {
