@@ -5,6 +5,7 @@ require_once('Champ.php');
 class ChampNombre extends Champ {
     private $valeurMin;
     private $valeurMax;
+    private $doitEtreEntier;
 
     public function __construct($nom, $libelle, $estObligatoire, $doitEtreEntier) {
         parent::__construct($nom, $libelle, $estObligatoire);

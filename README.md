@@ -46,9 +46,13 @@ Observez maintenant le code de la classe `ChampTexte`, qui a été modifié pour
 
 Si vous regardez le code dans `tests/etape1.php`, vous constaterez que celui-ci n'a pas changé. Le fonctionnement externe de la classe `ChampTexte` est le même qu'avant.
 
+![](images-readme/heritage1.png)
+
 ## Partie 1
 
 Modifiez le code des classes `ChampNombre`, `GroupeBoutonsRadio` et `ListeDeroulante` afin de les faire hériter de `Champ`. Les classes doivent hériter seulement de ce qui diffère par rapport à `Champ`. Inspirez-vous de ce qui a été fait dans `ChampTexte`, et testez vos nouvelles versions des classes au fur et à mesure en changeant `$etape` dans `index.php` (comme dans le Laboratoire 05-A).
+
+![](images-readme/heritage2.png)
 
 ## Partie 2
 
